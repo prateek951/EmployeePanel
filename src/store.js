@@ -40,12 +40,24 @@ const createStoreWithFirebase = compose(
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
-  notify : notifyReducer, 
-  settings: settingsReducer 
+  notify: notifyReducer,
+  settings: settingsReducer
 });
 
+//Check for settings in localStorage
+//agar settings already configured hai toh localStorage se fetch krlo 
+//agar null hai toh daaldo localStorage mein
+if(localStorage.getItem('settings') === null) {
+  const defaultSettings = {
+    disableBalanceOnAdd: true,
+    disableBalanceOnEdit: false,
+    allowRegistration: true
+  }
+  localStorage.setItem('settings',JSON.stringify(defaultSettings));
+}
+
 //Create init state
-const initialState = {};
+const initialState = {settings: JSON.parse(localStorage.getItem('settings'))};
 
 //Create store
 const store = createStoreWithFirebase(

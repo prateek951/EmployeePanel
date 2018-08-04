@@ -1,6 +1,3 @@
-//For the below code refer to the react-redux-firebase documentation 
-
-
 import locationHelperBuilder from "redux-auth-wrapper/history4/locationHelper";
 import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
 import Spinner from "../components/Spinner";

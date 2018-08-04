@@ -12,6 +12,7 @@ import Login from "./components/auth/Login";
 import Header from "./components/Header";
 import { UserIsAuthenticated, UserIsNotAuthenticated } from "./helpers/auth";
 import Settings from "./components/Settings";
+import Register from "./components/auth/Register";
 
 class App extends Component {
   render() {
@@ -22,7 +23,11 @@ class App extends Component {
             <Header />
             <div className="container">
               <Switch>
-                <Route exact path="/settings" component={UserIsAuthenticated(Settings)} />
+                <Route
+                  exact
+                  path="/settings"
+                  component={UserIsAuthenticated(Settings)}
+                />
                 <Route
                   exact
                   path="/"
@@ -47,6 +52,11 @@ class App extends Component {
                   exact
                   path="/auth/login"
                   component={UserIsNotAuthenticated(Login)}
+                />
+                <Route
+                  exact
+                  path="/auth/register"
+                  component={UserIsNotAuthenticated(Register)}
                 />
               </Switch>
             </div>

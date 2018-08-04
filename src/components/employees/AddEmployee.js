@@ -160,7 +160,8 @@ class AddEmployee extends Component {
 }
 
 AddEmployee.propTypes = {
-  firestore: PropTypes.object.isRequired
+  firestore: PropTypes.object.isRequired,
+  disableBalance: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

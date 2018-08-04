@@ -34,6 +34,7 @@ class Header extends React.Component {
   render() {
     const { auth } = this.props;
     const { isAuthenticated } = this.state;
+    const { allowRegistration } = this.props.settings;
     return (
       <div>
         <nav className="navbar navbar-expand-md navbar-dark bg-success mb-4">
@@ -79,6 +80,22 @@ class Header extends React.Component {
                   </li>
                 </ul>
               ) : null}
+              {allowRegistration && !isAuthenticated ? (
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link to="/auth/login" className="nav-link">
+                      Login
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/auth/register" className="nav-link">
+                      Register
+                    </Link>
+                  </li>
+                </ul>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </nav>
@@ -95,6 +112,7 @@ Header.propTypes = {
 export default compose(
   firebaseConnect(),
   connect((state, props) => ({
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    settings: state.settings
   }))
 )(Header);
